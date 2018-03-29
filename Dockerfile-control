@@ -1,0 +1,13 @@
+FROM node:9.9.0-alpine
+
+RUN apk add --no-cache git
+RUN apk add --update python krb5 krb5-libs gcc make g++ krb5-dev
+
+USER node
+
+RUN mkdir /home/node/.npm-global
+ENV PATH=/home/node/.npm-global/bin:$PATH
+ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
+
+
+RUN npm install gladius-control-daemon -g

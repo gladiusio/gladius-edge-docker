@@ -1,19 +1,17 @@
-version: '2'
+version: '3'
 services:
   edge-daemon:
-    build: https://github.com/gladiusio/gladius-edge-daemon.git
-    command: node index.js
-    volumes:
-      - .:/usr/app/
-      - /usr/app/node_modules
+    build:
+      context: .
+      dockerfile: Dockerfile-edge
+    command: gladius-edge
     ports:
       - "5000:5000"
       - "8080:8080"
   control-daemon:
-    build: https://github.com/gladiusio/gladius-control-daemon.git
-    command: node index.js
-    volumes:
-      - .:/usr/app/
-      - /usr/app/node_modules
+    build:
+      context: .
+      dockerfile: Dockerfile-control
+    command: gladius-control
     ports:
       - "3000:3000"
